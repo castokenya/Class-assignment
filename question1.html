@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JavaScript Assignment 1</title>
+  <style>
+    /* General Page Styling */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    h1 {
+      margin-top: 30px;
+      font-size: 2.5rem;
+      text-align: center;
+      color: #ffdd57;
+      text-shadow: 2px 2px 5px rgba(0,0,0,0.4);
+    }
+
+    h2 {
+      margin-top: 40px;
+      font-size: 1.5rem;
+      color: #ffdd57;
+      border-bottom: 2px solid #ffdd57;
+      padding-bottom: 5px;
+      width: 80%;
+      text-align: left;
+    }
+
+    input {
+      display: block;
+      margin: 10px 0;
+      padding: 10px;
+      width: 80%;
+      max-width: 400px;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+    }
+
+    button {
+      background: #ffdd57;
+      color: #1e3c72;
+      font-weight: bold;
+      border: none;
+      padding: 10px 20px;
+      margin: 10px 0;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    button:hover {
+      background: #ffc107;
+      transform: scale(1.05);
+    }
+
+    p {
+      margin-top: 10px;
+      font-size: 1.1rem;
+      background: rgba(255,255,255,0.1);
+      padding: 10px;
+      border-radius: 8px;
+      width: 80%;
+      max-width: 400px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <h1>JavaScript Assignment 1</h1>
+
+  <!-- Question 1: Salary After Tax -->
+  <h2>Salary After Tax Calculator</h2>
+  <input id="empName" placeholder="Employee Name">
+  <input id="basicSalary" type="number" placeholder="Basic Salary">
+  <input id="tax" type="number" placeholder="Tax %">
+  <button onclick="calcSalary()">Calculate</button>
+  <p id="salaryResult"></p>
+
+  <!-- Question 2: Shopping Discount -->
+  <h2>Shopping Discount System</h2>
+  <input id="itemName" placeholder="Item Name">
+  <input id="price" type="number" placeholder="Price">
+  <input id="quantity" type="number" placeholder="Quantity">
+  <button onclick="calcDiscount()">Calculate</button>
+  <p id="discountResult"></p>
+
+  <!-- Question 3: Student Grade -->
+  <h2>Student Grade Calculator</h2>
+  <input id="studentName" placeholder="Student Name">
+  <input id="marks" type="number" placeholder="Marks (0-100)">
+  <button onclick="calcGrade()">Calculate</button>
+  <p id="gradeResult"></p>
+
+  <!-- Question 4: Electricity Bill -->
+  <h2>Electricity Bill Calculator</h2>
+  <input id="units" type="number" placeholder="Units Consumed">
+  <button onclick="calcBill()">Calculate</button>
+  <p id="billResult"></p>
+
+  <script>
+    // Q1: Salary After Tax
+    function calcSalary() {
+      let name = document.getElementById("empName").value;
+      let salary = parseFloat(document.getElementById("basicSalary").value);
+      let tax = parseFloat(document.getElementById("tax").value);
+      let net = salary - (salary * tax / 100);
+      document.getElementById("salaryResult").innerHTML =
+        `${name}'s Net Salary: KES ${net}`;
+    }
+
+    // Q2: Shopping Discount
+    function calcDiscount() {
+      let item = document.getElementById("itemName").value;
+      let price = parseFloat(document.getElementById("price").value);
+      let qty = parseInt(document.getElementById("quantity").value);
+      let total = price * qty;
+      if (total > 5000) total = total - (total * 0.10);
+      document.getElementById("discountResult").innerHTML =
+        `Final Amount for ${item}: KES ${total}`;
+    }
+
+    // Q3: Student Grade
+    
+    function calcGrade() {
+      let name = document.getElementById("studentName").value;
+      let marks = parseInt(document.getElementById("marks").value);
+      let grade;
+      if (marks >= 80) grade = "A";
+      else if (marks >= 70) grade = "B";
+      else if (marks >= 60) grade = "C";
+      else grade = "Fail";
+      document.getElementById("gradeResult").innerHTML =
+        `${name}'s Grade: ${grade}`;
+    }
+
+    // Q4: Electricity Bill
+    function calcBill() {
+      let units = parseInt(document.getElementById("units").value);
+      let bill = 0;
+      if (units <= 100) {
+        bill = units * 10;
+      } else if (units <= 200) {
+        bill = (100 * 10) + ((units - 100) * 15);
+      } else {
+        bill = (100 * 10) + (100 * 15) + ((units - 200) * 20);
+      }
+      document.getElementById("billResult").innerHTML =
+        `Total Bill: KES ${bill}`;
+    }
+  </script>
+</body>
+</html>
